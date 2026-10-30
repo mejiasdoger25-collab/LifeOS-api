@@ -1,9 +1,106 @@
 models:
-  Category:
-    name: string nullable
-    user_id: id:user
-  Post:
-    title: string nullable
-    description: text nullable
-    user_id: id:user
-    category_id: id:category
+  Administrador:
+    email: string
+
+  Usuario:
+    nombre: string
+    email: string
+    edad: integer
+    sexo: string
+    altura: double
+    peso: double
+
+  RegistroSueno:
+    usuario_id: id:usuario
+    fechaInicio: datetime
+    fechaFin: datetime
+    duracion: integer
+    interrupciones: integer nullable
+    sensacionDescanso: string nullable
+
+  RegistroComida:
+    usuario_id: id:usuario
+    fecha: date
+    calorias: double
+    proteinas: double
+    carbohidratos: double
+    grasas: double
+    tipoComida: string
+
+  RegistroActividad:
+    usuario_id: id:usuario
+    fecha: date
+    tipo: string
+    duracion: integer
+    gradoIntensidad: string
+
+  RegistroEstadoAnimo:
+    usuario_id: id:usuario
+    fecha: date
+    estado: string
+    reflexion: text nullable
+
+  Contenido:
+    tipo: string
+    titulo: string
+    url: string nullable
+    fechaPublicacion: date
+
+  PreguntaEncuesta:
+    contenido_id: id:contenido
+    enunciado: text
+    tipo: string
+
+  OpcionRespuesta:
+    pregunta_id: id:pregunta_encuesta
+    texto: string
+    esCorrecta: boolean
+
+  RespuestaUsuario:
+    usuario_id: id:usuario
+    pregunta_id: id:pregunta_encuesta
+    opcion_id: id:opcion_respuesta
+    fecha: datetime
+
+  Amistad:
+    usuario_id: id:usuario
+    amigo_id: id:usuario
+    estado: string
+    fecha: datetime
+
+  Mensaje:
+    emisor_id: id:usuario
+    receptor_id: id:usuario
+    texto: text
+    fechaEnvio: datetime
+
+  PuntosXp:
+    usuario_id: id:usuario
+    cantidad: integer
+    motivo: string
+    fecha: datetime
+
+  Recompensa:
+    nombre: string
+    tipo: string
+    costePuntos: integer
+
+  CanjeRecompensa:
+    usuario_id: id:usuario
+    recompensa_id: id:recompensa
+    fecha: datetime
+
+  Conversacion:
+    usuario_id: id:usuario
+    fechaInicio: datetime
+
+  MensajeChatbot:
+    conversacion_id: id:conversacion
+    autor: string
+    texto: text
+    fecha: datetime
+
+  AnalisisComida:
+    registro_comida_id: id:registro_comida nullable
+    imagenUrl: string
+    confianza: double
